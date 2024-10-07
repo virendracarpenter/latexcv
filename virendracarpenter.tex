@@ -1,0 +1,282 @@
+\documentclass[a4paper,11pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome5}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,139}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Virendra Carpenter}}
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    +917724855355 | \href{mailto:virendracarpenter28@gmail.com}{virendracarpenter28@gmail.com} | 
+    \href{https://vcarp.vercel.app/}{vcarp.vercel.app}
+    }
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/virendracarpenter/}{virendracarpenter} | 
+    \socialicon{\faGithub} \href{https://github.com/virendracarpenter}{virendracarpenter} | 
+    % \socialicon{\faCode} \href{https://leetcode.com/vcarp}{vcarp} |
+    \socialicon{\faTwitter} \href{https://twitter.com/veecarpenter}{veecarpenter}
+    }
+\end{center}
+\vspace{-6mm}
+\begin{center}
+    \small{Shukliya, Indore - 301233, India}
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Objective}}
+\vspace{1mm}
+\small{
+  Python developer with 1.6+ years experience in building scalable applications with Django and REST APIs, eager to drive innovative solutions and collaborate on high-quality software.
+}
+\vspace{-2mm}
+
+
+\section{\textbf{Skills}}
+\vspace{-0.2mm}
+  \resumeHeadingSkillStart
+    \resumeSubItem{Programming Languages:}
+      {Python, JavaScript, SQL, HTML, CSS}
+    \resumeSubItem{Frameworks And Libraries:}
+      {Django, Django Rest Framework, FastAPI, Flask, Wagtail, WebSockets, Bootstrap, Ajax,  jQuery, OpenAI API, Prompt Engineering, Beautiful Soup, Selenium, Celery, Redis, Pandas, NumPy, Matplotlib}
+    \resumeSubItem{Database Systems:}
+      {PostgreSQL, SQLite, MySQL, AWS RDS, GCP SQL Instance}
+    \resumeSubItem{Version Control \& Cloud Technologies:}
+      {Git, GitHub, Docker, Nginx, Uvicorn, Gunicorn, Github Actions, AWS (Lambda, S3, EC2, RDS, Secret Manager), GCP (Compute Engine, Document AI, Load Balancer, App Engine, Storage Bucket)}
+    \resumeSubItem{Other Tools \& Technologies:}
+      {PyCharm, Vim, Postman, Shell Scripting,  Zoho CRM}
+  \resumeHeadingSkillEnd
+
+
+\section{\textbf{Profrssional Experience}}
+\vspace{-0.4mm}
+  \resumeSubHeadingListStart
+  \resumeSubheading
+      {{Cyber Infrastructure (P) Ltd [\href{https://www.cisin.com/}{\faIcon{globe}}]}}{Indore, India}
+      {Software Engineer}{April 2023 - Present}
+      \resumeItemListStart
+        \item Designed and implemented scalable system architectures for multiple projects. Developed backend functionalities using Python, Django, and DRF, integrating trading algorithms and automated quiz generation. 
+        \item Deployed and managed applications on AWS (EC2, S3) using Docker for containerization, streamlining continuous integration and deployment processes while ensuring high availability and scalability.
+        \item Worked closely with the business team to understand and fulfill client requirements. Analyzed client requirements, conducted RD, and provided accurate project estimates and responses.
+        \item Collaborated with cross-functional teams to deliver features and optimize performance. Facilitated clear communication with global clients, ensuring project success and satisfaction.
+      \resumeItemListEnd 
+  \resumeSubHeadingListEnd
+\vspace{-6mm}
+
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {Hands-Free Trading: Trading Automation}
+  {Tools: Python3, Django, Django Rest Framework, WebSockets, Kafka, React, PostgreSQL, Microservices, AWS (RDS, ECR, ECS, S3), Docker}
+  {}{}
+  % {{}[\href{https://}{\textcolor{darkblue}{\faGlobe}}]}
+\resumeItemListStart
+  \item Microservices Architecture: Developed a cloud-based algo-trading platform architected with microservices. Created RESTful APIs for inter-service communication and implemented an API gateway. Integrated brokers (e.g., Tradier, Tradestation) and developed secure user management (JWT, Google Auth).
+  \item Improved perfomance by 30 \%, by utilized Celery for caching and deployed on AWS (RDS, ECR, ECS) for scalability. Designed services for notifications, signal trade engine, cronjobs and payments. Implemented CI/CD pipelines, leveraging PostgreSQL, Gunicorn, and Nginx for robust performance.
+\resumeItemListEnd
+
+\resumeProject
+  {MySportsDriver Chatbot: A website assistant bot for MySportsDriver platform.}
+  {Tools: Python3, FastAPI, OpenAI API, Bootstrap, HTML, CSS, JavaScript, Ajax, Uvicorn, AWS, Docker, Zoho CRM, Nginx}
+  {}{}
+  % {{}[\href{https://}{\textcolor{darkblue}{\faGlobe}}]}
+\resumeItemListStart
+  \item Developed a chatbot using FastAPI and OpenAI to assist users with predefined Q\&A and handle dynamic queries based on user input. Implemented feedback mechanism for user satisfaction and integrated ticket generation in Zoho CRM for unresolved queries.
+  \item Applied prompt engineering techniques to improve the chatbot's ability to interpret user queries and provide accurate responses.
+\resumeItemListEnd
+
+\resumeProject
+  {Starlight: A Quiz Management System}
+  {Tools: Python3, Django, GCP, PostgreSQL, Docker, Bootstrap, HTML, CSS, JavaScript, Ajax, OpenAI, Rasa}
+  {}{}
+  % {{}[\href{https://}{\textcolor{darkblue}{\faGlobe}}]}
+\resumeItemListStart
+  \item Full-Stack Development: Developed a web-based quiz platform, supporting various question types (MCQs, true/false, fill-in-the-blank, equations, and formulas). Integrated Google Sheets for bulk question uploads and implemented AI-powered automatic question generation from PDFs or specific topics via OpenAI for teachers.
+  \item Implemented a custom Rasa chatbot for interactive quizzes, including a dino game for engagement.
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+
+\section{\textbf{Additional Information}}
+\vspace{-0.4mm}
+\small{
+\textbf{Languages:}  English, Hindi
+
+\textbf{Interests:} Technology Trends,  Customising System , Hiking
+}
+
+\vspace{-4mm}
+
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Bachelor of Technology, Computer Science and Engineering}{Indore, India}
+{IPS Academy, Institute of Engineering \& Science}{2019 - 2023}
+\resumeItemListStart
+\item CGPA: 8.61/10.00
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\end{document}
